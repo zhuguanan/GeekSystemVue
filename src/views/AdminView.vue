@@ -48,40 +48,40 @@ export default {
   },
   // 页面加载的时候，做一些事情，在created里面
   created() {
-    this.load();
+    this.findBySerach();
   },
   // 定义一些页面上控件触发的事件调用的方法
   methods: {
-    load() {
-      request.get("/admin/getAdminList").then(res => {
-        if (res.code === '0') {
-          this.tableData = res.data;
-        } else {
-
-        }
-      })
-    },
+    //分页查询
     findBySerach() {
       request.get("/admin/findAdminBySearch", { params: this.params }).then(res => {
         if (res.code === '0') {
-          this.tableData = res.data;
+          this.tableData = res.data.list;
+          this.total = res.data.total;
         } else {
 
         }
       })
     },
+    //重置输入框信息
     reset() {
       this.params = {
         name: '',
-        phone: ''
+        phone: '',
+        pageNum: 1,
+        pageSize: 10
       }
       this.findBySerach()
     },
-    handleSizeChange() {
-
+    //分页组件，每页条数查询
+    handleSizeChange(pageSize) {
+      this.params.pageSize = pageSize;
+      this.findBySerach();
     },
-    handleCurrentChange() {
-
+    //分页组件，当前页查询
+    handleCurrentChange(pageNum) {
+      this.params.pageNum = pageNum;
+      this.findBySerach();
     }
   }
 }
