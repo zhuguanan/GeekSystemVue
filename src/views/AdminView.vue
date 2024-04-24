@@ -17,9 +17,10 @@
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
-            <el-button type="danger" @click="del(scope.row)">删除</el-button>
+            <el-popconfirm title="确定删除吗？" @confirm="del(scope.row.id)">
+              <el-button slot="reference" style="margin-left: 5px" type="danger">删除</el-button>
+            </el-popconfirm>
           </template>
-
         </el-table-column>
       </el-table>
     </div>
@@ -146,8 +147,22 @@ export default {
       this.dialogFormVisible = true;
     },
     // 删除
-    del() {
-
+    del(id) {
+      request.delete("/admin/deleteAdmin/" + id).then(res => {
+        if (res.code === '0') {
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          });
+          //分页查询
+          this.findBySerach();
+        } else {
+          this.$message({
+            message: res.msg,
+            type: 'error'
+          });
+        }
+      })
     }
   }
 }
