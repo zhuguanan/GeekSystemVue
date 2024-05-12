@@ -61,6 +61,7 @@
 import request from '@/utils/request';
 
 export default {
+  name: 'AdminView',
   data() {
     return {
       params: {
