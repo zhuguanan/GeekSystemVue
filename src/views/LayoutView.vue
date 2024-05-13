@@ -4,6 +4,16 @@
             <el-header style="background-color: #4c535a;">
                 <img src="@/assets/logo.png" alt="" style="width: 40px; position: relative; top: 10px;">
                 <span style="font-size: 20px; margin-left: 15px; color: white;">极客的项目</span>
+                <el-dropdown style="float: right; height: 60px; line-height: 60px;">
+                    <span class="el-dropdown-link" style="color: white; font-size: 16px;">
+                        {{ user.name }}<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>
+                            <div @click="logout()">退出登录</div>
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
             </el-header>
         </el-container>
 
@@ -45,13 +55,26 @@
 </template>
 
 <script>
-    export default {
-        name: "LayoutView"
+export default {
+    name: "LayoutView",
+    data() {
+        return {
+            user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
+        }
+    },
+    methods: {
+        logout() {
+            //清楚本地存储的登录数据
+            localStorage.removeItem("user");
+            //跳转到登录页面
+            this.$router.push('/login');
+        }
     }
+}
 </script>
 
 <style>
 .el-menu {
-  border-right: none !important;
+    border-right: none !important;
 }
 </style>

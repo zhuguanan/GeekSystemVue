@@ -12,7 +12,7 @@
           </el-form-item>
 
           <el-form-item>
-            <el-input v-model="admin.password" prefix-icon="el-icon-lock" style="width: 80%;"
+            <el-input v-model="admin.password" show-password prefix-icon="el-icon-lock" style="width: 80%;"
               placeholder="请输入密码"></el-input>
           </el-form-item>
 
@@ -49,7 +49,7 @@ export default {
             message: '登录成功',
             type: 'success'
           });
-
+          localStorage.setItem("user", JSON.stringify(res.data));
           //页面跳转（跳转到首页）
           this.$router.push("/home")
         } else {

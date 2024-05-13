@@ -49,4 +49,18 @@ const router = new VueRouter({
   routes
 })
 
+//路由守卫
+router.beforeEach((to, from, next) => {
+  //如果你要去的路由是登录页面，那就直接去登录页面
+  if (to.path === '/login') {
+    return next();
+  }
+  //如果我要去的页面不是登录页面并且没有登录信息，则直接跳转到登录页面
+  const user = localStorage.getItem("user");
+  if (!user && to.path !== '/login') {
+    return next('/login')
+  }
+  next();
+})
+
 export default router
