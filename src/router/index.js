@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LayoutView from '../views/LayoutView.vue'
+import BookView from '../views/BookView.vue'
 
 
 
@@ -38,6 +39,11 @@ const routes = [
         path: 'admin',
         name: 'admin',
         component: () => import(/* webpackChunkName: "about" */ '../views/AdminView.vue')
+      },
+      {
+        path: 'book',
+        name: 'book',
+        component: () => import(/* webpackChunkName: "about" */ '../views/BookView.vue')
       }
     ]
   }
