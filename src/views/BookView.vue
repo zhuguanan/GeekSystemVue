@@ -179,16 +179,16 @@ export default {
       })
     },
     //文件上传成功后，要处理的事情
-    successUpload(res){
+    successUpload(res) {
       this.form.img = res.data;
     },
     //文件下载
-    dowm(flag){
+    dowm(flag) {
       location.href = 'http://localhost:8090/api/files/' + flag;
     },
     //文件上传完清空
-    doClear () {
-        this.$refs.upload.clearFiles()
+    doClear() {
+      this.$refs.upload.clearFiles()
     }
 
   }
