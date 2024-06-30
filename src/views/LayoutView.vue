@@ -41,8 +41,8 @@
                             <span>信息管理</span>
                         </template>
                         <el-menu-item-group>
+                            <el-menu-item index="/type">图书分类</el-menu-item>
                             <el-menu-item index="/book">图书信息</el-menu-item>
-                            <el-menu-item index="3-2">sss信息</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                 </el-menu>

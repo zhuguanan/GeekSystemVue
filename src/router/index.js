@@ -5,7 +5,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LayoutView from '../views/LayoutView.vue'
 import BookView from '../views/BookView.vue'
-
+import TypeView from '../views/TypeView.vue'
 
 
 Vue.use(VueRouter)
@@ -44,6 +44,11 @@ const routes = [
         path: 'book',
         name: 'book',
         component: () => import(/* webpackChunkName: "about" */ '../views/BookView.vue')
+      },
+      {
+        path: 'type',
+        name: 'type',
+        component: () => import(/* webpackChunkName: "about" */ '../views/TypeView.vue')
       }
     ]
   }
